@@ -1,0 +1,29 @@
+.clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+
+    .time {
+        font-size: 4rem;
+    }
+
+    .date {
+        font-size: .85rem;
+    }
+
+    .size-s {
+        font-size: 24px;
+    }
+
+    .size-m {
+        font-size: 36px;
+    }
+
+    .size-l {
+        font-size: 56px;
+    }
+}
+

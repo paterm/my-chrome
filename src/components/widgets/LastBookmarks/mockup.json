@@ -1,0 +1,42 @@
+[
+  {
+    "dateAdded": 1673018467174,
+    "id": "480",
+    "index": 3,
+    "parentId": "475",
+    "title": "React Grid component - Material UI",
+    "url": "https://mui.com/material-ui/react-grid/"
+  },
+  {
+    "dateAdded": 1670959726684,
+    "id": "478",
+    "index": 2,
+    "parentId": "475",
+    "title": "Яндекс Практикум",
+    "url": "https://practicum.yandex.ru/learn/algorithms/courses/7f101a83-9539-4599-b6e8-8645c3f31fad/sprints/74835/topics/45179065-a73b-473d-94d1-24774573f266/lessons/adb9a06e-f8a5-4d9b-b88a-2085cc8458f9/"
+  },
+  {
+    "dateAdded": 1670004473659,
+    "id": "476",
+    "index": 1,
+    "parentId": "475",
+    "title": "«Как я мог предположить, что Disney может купить такую компанию, как Pixar?»: как Боб Айгер устроил сделку на $7,4 млрд — Что почитать на vc.ru",
+    "url": "https://vc.ru/books/383500-kak-ya-mog-predpolozhit-chto-disney-mozhet-kupit-takuyu-kompaniyu-kak-pixar-kak-bob-ayger-ustroil-sdelku-na-7-4-mlrd"
+  },
+  {
+    "dateAdded": 1670004452731,
+    "id": "474",
+    "index": 0,
+    "parentId": "475",
+    "title": "Kubernetes For Frontend Developers — Smashing Magazine",
+    "url": "https://www.smashingmagazine.com/2022/05/kubernetes-front-end-developers/"
+  },
+  {
+    "dateAdded": 1669893701397,
+    "id": "472",
+    "index": 2,
+    "parentId": "467",
+    "title": "Инвентори",
+    "url": "http://localhost:3000/list/view/SysRoles"
+  }
+]

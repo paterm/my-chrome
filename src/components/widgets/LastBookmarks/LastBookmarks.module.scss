@@ -1,0 +1,17 @@
+.container {
+  height: 100%;
+}
+
+.bookmark {
+  a {
+    display: inline-block;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.bookmarkIcon {
+  width: 24px;
+  height: 24px;
+}
