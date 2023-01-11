@@ -1,15 +1,19 @@
 import React, { forwardRef } from 'react'
 import { GridWidgetType } from '@components/WidgetsGrid/types'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { IconButton } from '@mui/material'
 import { GridStackWidget } from 'gridstack/dist/types'
-import { WIDGET_NAME } from '@const/widgetName'
+import { WIDGET_ID } from '@const/widgetName'
 import { isFunction } from 'lodash'
 import s from './GridWidgetRenderer.module.scss'
 import ClockWidget from '@components/widgets/ClockWidget/ClockWidget'
 import LastBookmarks from '@components/widgets/LastBookmarks'
 import BookmarksTree from '@components/widgets/BookmarksTree'
 import Notes from '@components/widgets/Notes'
+import CancelIcon from '@mui/icons-material/Cancel'
+import NotesButton from '@components/widgets/NotesButton'
+import BookmarksButton from '@components/widgets/BookmarksButton'
+import LastBookmarksButton from '@components/widgets/LastBookmarksButton'
+import Weather from '@components/widgets/Weather'
 
 interface GridWidgetRendererProps {
   widget: GridWidgetType
@@ -20,9 +24,13 @@ interface GridWidgetRendererProps {
 const {
   CLOCK,
   LAST_BOOKMARKS,
+  LAST_BOOKMARKS_BUTTON,
   BOOKMARKS_TREE,
+  BOOKMARKS_BUTTON,
   NOTES,
-} = WIDGET_NAME
+  NOTES_BUTTON,
+  WEATHER,
+} = WIDGET_ID
 
 const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
   ({
@@ -41,11 +49,23 @@ const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
     case LAST_BOOKMARKS:
       Component = LastBookmarks
       break
+    case LAST_BOOKMARKS_BUTTON:
+      Component = LastBookmarksButton
+      break
+    case BOOKMARKS_BUTTON:
+      Component = BookmarksButton
+      break
     case BOOKMARKS_TREE:
       Component = BookmarksTree
       break
     case NOTES:
       Component = Notes
+      break
+    case NOTES_BUTTON:
+      Component = NotesButton
+      break
+    case WEATHER:
+      Component = Weather
       break
   }
 
@@ -70,8 +90,10 @@ const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
         <IconButton
           className={s.deleteButton}
           onClick={() => onDelete(widget)}
+          color="error"
+          size="small"
         >
-          <DeleteIcon color="error" />
+          <CancelIcon fontSize="small" />
         </IconButton>
       )}
 

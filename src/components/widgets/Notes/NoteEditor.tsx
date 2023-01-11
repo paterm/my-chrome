@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { Note } from '@components/widgets/Notes/types'
 import { useRecoilValue } from 'recoil'
-import { notesState } from '@state/notes'
+import { notesState } from '@state/notes.state'
 import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material'
 import BootstrapDialogTitle from '@components/BootstrapDialogTitle/BootstrapDialogTitle'
 import { isNumber, uniqueId } from 'lodash'

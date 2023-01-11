@@ -11,10 +11,10 @@ import { pick } from 'lodash'
 const options = {
   acceptWidgets: true,
   float: true,
-  margin: 8,
+  // margin: 8,
   minRow: 15, // don't collapse when empty
   // column: 6,
-  cellHeight: 70,
+  cellHeight: 75,
 };
 
 interface GridProps {

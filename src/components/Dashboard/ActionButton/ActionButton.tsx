@@ -1,30 +1,63 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import { SpeedDial, SpeedDialAction } from '@mui/material'
 import WidgetsIcon from '@mui/icons-material/Widgets'
 import RefreshIcon from '@mui/icons-material/Refresh'
-import { useSetRecoilState } from 'recoil'
-import { widgetsPanelOpenState } from '@state/widgets'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { widgetsPanelOpenState } from '@state/widgets.state'
 import { UnsplashService } from '@services/unsplash.service'
-import { wallpaperState } from '@state/wallpaper'
+import { wallpaperState } from '@state/wallpaper.state'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import { appThemeState } from '@state/global.state'
+import theme from '@theme'
 
-const ACTION_ID = {
-  WIDGETS: 'widgets',
-  REFRESH_WALLPAPER: 'refresh_wallpaper',
-};
 const {
   WIDGETS,
   REFRESH_WALLPAPER,
-} = ACTION_ID
+  THEME,
+} = {
+  WIDGETS: 'widgets',
+  REFRESH_WALLPAPER: 'refresh_wallpaper',
+  THEME: 'theme',
+};
 
-const actions = [
-  { id: WIDGETS, icon: <WidgetsIcon />, name: 'Виджеты' },
-  { id: REFRESH_WALLPAPER, icon: <RefreshIcon />, name: 'Обновить обои' },
-];
 
 const ActionButton: React.FC = () => {
   const setOpenWidgetsPanel = useSetRecoilState(widgetsPanelOpenState);
   const setWallpaper = useSetRecoilState(wallpaperState)
+  const [appTheme, setAppTheme] = useRecoilState(appThemeState)
+
+  const actions = useMemo(() => {
+    let appThemeSettings
+
+    switch (appTheme) {
+      case 'light':
+        appThemeSettings = {
+          label: 'Тема: Светлая',
+          icon: <LightModeIcon />
+        }
+        break
+      case 'dark':
+        appThemeSettings = {
+          label: 'Тема: Темная',
+          icon: <DarkModeIcon />,
+        }
+        break
+      default:
+        appThemeSettings = {
+          label: 'Тема: Авто',
+          icon: <Brightness4Icon />,
+        }
+    }
+
+    return [
+      { id: WIDGETS, icon: <WidgetsIcon />, name: 'Виджеты' },
+      { id: REFRESH_WALLPAPER, icon: <RefreshIcon />, name: 'Обновить обои' },
+      { id: THEME, icon: appThemeSettings.icon, name: appThemeSettings.label },
+    ]
+  }, [appTheme])
 
   return (
     <SpeedDial
@@ -46,6 +79,17 @@ const ActionButton: React.FC = () => {
                 const unsplashService = new UnsplashService()
                 const result = await unsplashService.getImage()
                 if (result) setWallpaper(result)
+                break
+              case THEME:
+                setAppTheme((prev) => {
+                  if (prev === "auto") {
+                    return "dark"
+                  }
+                  if (prev === "dark") {
+                    return "light"
+                  }
+                  return "auto"
+                })
                 break
             }
           }}

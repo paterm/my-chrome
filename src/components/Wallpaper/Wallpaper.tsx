@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { UnsplashService } from '@services/unsplash.service'
 import s from './Wallpaper.module.scss'
 import { useRecoilState } from 'recoil'
-import { wallpaperState } from '@state/wallpaper'
+import { wallpaperState } from '@state/wallpaper.state'
 
 
 const Wallpaper: React.FC = () => {

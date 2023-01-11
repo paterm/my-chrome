@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, SvgIconProps } from '@mui/material'
+import { Paper, SvgIconProps } from '@mui/material'
 import s from './WidgetWrap.module.scss'
 
 interface WidgetWrapProps {
@@ -14,7 +14,11 @@ const WidgetWrap: React.FC<WidgetWrapProps> = ({
   children,
 }) => {
   return (
-    <Card className={s.container}>
+    <Paper
+      elevation={24}
+      className={s.container}
+      sx={{ borderRadius: '24px' }}
+    >
       {title && (
         <div className={s.header}>
           {Icon && <Icon className={s.icon} />}
@@ -24,7 +28,7 @@ const WidgetWrap: React.FC<WidgetWrapProps> = ({
       <div className={s.content}>
         {children}
       </div>
-    </Card>
+    </Paper>
   )
 }
 

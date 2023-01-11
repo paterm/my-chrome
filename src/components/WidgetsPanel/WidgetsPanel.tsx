@@ -1,6 +1,6 @@
 import React  from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { allWidgetsState, widgetsPanelOpenState } from '@state/widgets'
+import { allWidgetsState, widgetsPanelOpenState } from '@state/widgets.state'
 import { Card, Divider, Drawer, IconButton, Typography } from '@mui/material'
 import GridWidgetRenderer from '@components/WidgetsGrid/GridWidgetRenderer'
 import CloseIcon from '@mui/icons-material/Close'

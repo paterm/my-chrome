@@ -3,17 +3,19 @@ import s from './Dashboard.module.scss'
 import WidgetsPanel from '@components/WidgetsPanel/WidgetsPanel'
 import Wallpaper from '@components/Wallpaper'
 import ActionButton from '@components/Dashboard/ActionButton'
+import DrawerWidget from '@components/DrawerWidget'
 
 const Dashboard: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className={s.board}>
-      <div className={s.content}>
-        {children}
-      </div>
-
+      <DrawerWidget />
       <WidgetsPanel />
       <Wallpaper />
       <ActionButton />
+
+      <div className={s.content}>
+        {children}
+      </div>
     </div>
   )
 }

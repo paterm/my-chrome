@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import WidgetWrap from '@components/widgets/WidgetWrap'
-import ArticleIcon from '@mui/icons-material/Article'
+import EventNoteIcon from '@mui/icons-material/EventNote'
 import { Alert, Button, IconButton, List, ListItem, ListItemButton } from '@mui/material'
 import { useRecoilState } from 'recoil'
-import { notesState } from '@state/notes'
+import { notesState } from '@state/notes.state'
 import NoteEditor from '@components/widgets/Notes/NoteEditor'
 import { Note } from '@components/widgets/Notes/types'
 import AddIcon from '@mui/icons-material/Add'
@@ -42,7 +42,7 @@ const Notes: React.FC = () => {
   return (
     <WidgetWrap
       title="Заметки"
-      Icon={ArticleIcon}
+      Icon={EventNoteIcon}
     >
       {!notes.length && (
         <Alert security="info">
@@ -60,8 +60,12 @@ const Notes: React.FC = () => {
             disableGutters
             disablePadding
             secondaryAction={(
-              <IconButton color="error" onClick={() => handleDelete(note.id)}>
-                <DeleteForeverIcon />
+              <IconButton
+                color="error"
+                onClick={() => handleDelete(note.id)}
+                size="small"
+              >
+                <DeleteForeverIcon fontSize="small" />
               </IconButton>
             )}
           >

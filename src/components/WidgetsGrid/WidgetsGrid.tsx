@@ -1,7 +1,7 @@
 import React from 'react'
 import 'gridstack/dist/gridstack.min.css'
 import { useRecoilState } from 'recoil'
-import { widgetsState } from '@state/widgets'
+import { widgetsState } from '@state/widgets.state'
 import Grid from '@components/WidgetsGrid/Grid'
 import { GridWidgetType } from '@components/WidgetsGrid/types'
 

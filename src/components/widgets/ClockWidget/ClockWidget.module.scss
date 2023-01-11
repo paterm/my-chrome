@@ -5,6 +5,9 @@
     align-items: center;
     height: 100%;
 
+    & > svg {
+        text-shadow: rgba(0, 0, 0, 0.3) 0 1px 5px;
+    }
 
     .time {
         font-size: 4rem;
