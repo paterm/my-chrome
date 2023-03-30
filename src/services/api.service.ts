@@ -6,7 +6,7 @@ class ApiService {
     this.options = options;
   }
 
-  public fetch(url: string, options: any) {
+  public fetch(url: string, options: any = {}) {
     const fetchUrl = new URL(this.options.base + url);
     const fetchOptions = { ...options, ...this.options };
     let params = this.options.params || {};

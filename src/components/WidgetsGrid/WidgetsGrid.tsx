@@ -2,42 +2,46 @@ import React from 'react'
 import 'gridstack/dist/gridstack.min.css'
 import { useRecoilState } from 'recoil'
 import { widgetsState } from '@state/widgets.state'
-import Grid from '@components/WidgetsGrid/Grid'
-import { GridWidgetType } from '@components/WidgetsGrid/types'
+// import Grid from '@components/WidgetsGrid/Grid'
+// import NewGrid from '@components/WidgetsGrid/NewGrid/NewGrid'
+// import ControlledStack from '@components/WidgetsGrid/ControlledStack'
+// import { GridWidgetType } from '@components/WidgetsGrid/types'
+import GridLayout from '@components/Grid'
+import { Layout } from 'react-grid-layout'
+
+const gridOptions = {
+  float: true,
+  acceptWidgets: true,
+  cellHeight: 100,
+}
 
 const WidgetsGrid: React.FC = () => {
   const [widgets, setWidgets] = useRecoilState(widgetsState)
 
-  const handleAdd = (widget: GridWidgetType) => {
-    setWidgets((prev) => {
-      const newWidgets = [...prev]
-      newWidgets.push(widget)
-      return newWidgets
-    })
+  const handleAdd = (layout: Layout) => {
+    // console.log('Add widget', widget);
+    // setWidgets((prev) => {
+    //   const newWidgets = [...prev]
+    //   newWidgets.push(widget)
+    //   return newWidgets
+    // })
   }
 
-  const handleChange = (widget: GridWidgetType) => {
-    setWidgets((prev) => {
-      return prev.map((w) => {
-        if (w.id === widget.id) {
-          return widget
-        }
-        return w
-      })
-    })
+  const handleChange = (layout: Layout[]) => {
+    console.log('change layout', layout)
+    setWidgets(layout);
   }
 
-  const handleDelete = (widget: GridWidgetType) => {
-    const filtered = widgets.filter(({ id }) => id !== widget.id)
+  const handleDelete = (layout: Layout) => {
+    const filtered = widgets.filter(({ i }) => i !== layout.i)
     setWidgets(filtered)
   }
 
+  console.log('widgets', widgets);
   return (
-    <Grid
-      widgets={widgets}
-      onAdd={handleAdd}
-      onChange={handleChange}
-      onDelete={handleDelete}
+    <GridLayout
+      items={widgets}
+      onLayoutChange={handleChange}
     />
   )
 }

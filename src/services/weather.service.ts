@@ -12,7 +12,7 @@ type OpenWeatherMapOptions = {
 };
 
 export default class WeatherApiService {
-  private apiService = new ApiService({
+  private api = new ApiService({
     base: WHETHER_BASE,
     params: {
       appid: API_KEY,
@@ -47,7 +47,7 @@ export default class WeatherApiService {
       options.params.q = cityName;
     }
 
-    return this.apiService.fetch('/weather', options)
+    return this.api.fetch('/weather', options)
   }
 
   public getIcon(code: string): string {

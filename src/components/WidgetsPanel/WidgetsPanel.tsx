@@ -1,15 +1,24 @@
 import React  from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { allWidgetsState, widgetsPanelOpenState } from '@state/widgets.state'
-import { Card, Divider, Drawer, IconButton, Typography } from '@mui/material'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { allWidgetsState, draggingWidgetState, widgetsPanelOpenState } from '@state/widgets.state'
+import { Card, Divider, Drawer, IconButton, List, ListItem, Typography, useTheme } from '@mui/material'
 import GridWidgetRenderer from '@components/WidgetsGrid/GridWidgetRenderer'
 import CloseIcon from '@mui/icons-material/Close'
-// import AddIcon from '@mui/icons-material/Add'
 import s from './WidgetPanel.module.scss'
+import ControlledStack from '@components/WidgetsGrid/ControlledStack'
+import Widget from '@components/Grid/Widget'
+
+const gridOptions = {
+  float: false,
+  acceptWidgets: false,
+  cellHeight: 80,
+}
 
 const WidgetsPanel: React.FC = () => {
-  const allWidgets = useRecoilValue(allWidgetsState)
   const [open, setOpen] = useRecoilState(widgetsPanelOpenState)
+  const allWidgets = useRecoilValue(allWidgetsState)
+  const setDraggingWidget = useSetRecoilState(draggingWidgetState)
+  const theme = useTheme()
 
   const handleClose = () => {
     setOpen((o) => !o)
@@ -40,25 +49,46 @@ const WidgetsPanel: React.FC = () => {
 
       <Divider sx={{ mb: 2 }} />
 
-      {allWidgets.map((widget) => (
-        <Card
-          key={widget.id}
-          className={s.widget}
-          sx={{ mb: 2 }}
-        >
-          {/*<div className={s.addButtonWrap}>*/}
-          {/*  <IconButton*/}
-          {/*    size="large"*/}
-          {/*    className={s.addButton}*/}
-          {/*    color="success"*/}
-          {/*  >*/}
-          {/*    <AddIcon />*/}
-          {/*  </IconButton>*/}
-          {/*</div>*/}
-
-          <GridWidgetRenderer widget={widget} passXY={false}/>
-        </Card>
-      ))}
+      <List sx={{ overflowY: 'auto' }}>
+        {open && allWidgets.map((layout) => (
+          <ListItem key={layout.i}>
+            <Card
+              className={s.widget}
+              sx={{ width: '100%', backgroundColor: theme.palette.background.paper }}
+            >
+              <div
+                key={layout.i}
+                data-grid={layout}
+                draggable
+                data-id="p"
+                onDragStart={() => setDraggingWidget(layout)}
+              >
+                <Widget widget={layout} />
+              </div>
+            </Card>
+          </ListItem>
+        ))}
+      </List>
+      {/*<ControlledStack*/}
+      {/*  items={allWidgets}*/}
+      {/*  options={gridOptions}*/}
+      {/*/>*/}
+      {/*<List sx={{ overflowY: 'auto' }}>*/}
+      {/*  {allWidgets.map((widget) => (*/}
+      {/*    <ListItem key={widget.id}>*/}
+      {/*      <Card*/}
+      {/*        className={s.widget}*/}
+      {/*        sx={{ width: '100%', backgroundColor: theme.palette.background.paper }}*/}
+      {/*      >*/}
+      {/*        <GridWidgetRenderer*/}
+      {/*          widget={widget}*/}
+      {/*          passXY={false}*/}
+      {/*          present*/}
+      {/*        />*/}
+      {/*      </Card>*/}
+      {/*    </ListItem>*/}
+      {/*  ))}*/}
+      {/*</List>*/}
     </Drawer>
   )
 }

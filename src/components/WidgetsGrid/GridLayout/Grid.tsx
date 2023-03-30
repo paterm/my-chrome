@@ -13,7 +13,7 @@ const options = {
   float: true,
   // margin: 8,
   minRow: 15, // don't collapse when empty
-  // column: 6,
+  column: 12,
   cellHeight: 75,
 };
 
@@ -23,7 +23,6 @@ interface GridProps {
   onAdd: (widget: GridWidgetType) => void
   onChange: (widget: GridWidgetType) => void
 }
-
 
 const Grid: React.FC<GridProps> = ({
   widgets,

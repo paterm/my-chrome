@@ -6,5 +6,7 @@ export const WIDGET_ID = {
   BOOKMARKS_BUTTON: 'bookmarks-button',
   NOTES: 'notes',
   NOTES_BUTTON: 'notes_button',
-  WEATHER: 'weather,'
+  WEATHER: 'weather',
+  GOOGLE_KEEP: 'google-keep',
+  CALENDAR: 'google-calendar',
 };

@@ -20,7 +20,6 @@ const Weather: React.FC = () => {
       // await getCity(coords)
       await getWeather(coords)
     }
-    console.log('position', position)
   }
 
   // const getCity = async (coords: GeolocationCoordinates) => {

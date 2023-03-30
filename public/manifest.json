@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Chrome Start Page",
+  "name": "HomeChrome",
   "version": "1.0",
   "description": "Chrome Start Page.",
   "author": "Efimov Artem",
@@ -9,6 +9,19 @@
   },
   "permissions": [
     "storage",
-    "bookmarks"
-  ]
+    "bookmarks",
+    "identity",
+    "identity.email"
+  ],
+  "oauth2": {
+    "client_id": "214941754307-ls4kaqvklfi6m7ul1h9jast1ktl3rgst.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/client_channel",
+      "https://www.googleapis.com/auth/cclog",
+      "https://www.googleapis.com/auth/memento",
+      "https://www.googleapis.com/auth/calendar.readonly",
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmgb0ACv806YOfPBhkmqzqnHpqvWbweCICAl4I27e1u3LtbE0WMeSXOjNr5cyc+tL+l3C0qgx8EwntU/LzBOnLBjoVk4ky+ffos2EYRrPfZ/J5Hv4TAxI0VWZVER52Gg8mgS4oq1mDwdHaeX6mJ3msLxM226A1nxDAcF5/W6H5Nrc6qx/cy0ptC94GGMNr/adsT/Os+GZpU5Cv4Gf4Xkc4cY86DAWSC2MqrYSDslwTCFs2kyffoGI1ANH7WHBcwrmXQrjzQR8qKEFF5C7rl3NqKWp6j1fu7SvyRowIQgN8NGDj22ps8yJ6y8DG9Rm+FZP5v3WIFqtRi019wNLxmdvAQIDAQAB"
 }

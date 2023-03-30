@@ -3,6 +3,7 @@ import { LOCAL_STORAGE_KEYS } from '@const/localStorageKeys'
 import { GridWidgetType } from '@components/WidgetsGrid/types'
 import { WIDGET_ID } from '@const/widgetName'
 import { DrawerWidgetState } from '@components/DrawerWidget/types'
+import { Layout } from 'react-grid-layout'
 
 const { WIDGETS: WidgetsState } = LOCAL_STORAGE_KEYS
 const {
@@ -14,22 +15,24 @@ const {
   NOTES,
   NOTES_BUTTON,
   WEATHER,
+  CALENDAR,
 } = WIDGET_ID
 
 const storageWidgets = localStorage.getItem(WidgetsState)
-const allWidgets: GridWidgetType[] = [
-  {id: CLOCK, x: 2, y: 0, w: 2, h: 2},
-  {id: LAST_BOOKMARKS, x: 1, y: 1, w: 2, h: 3},
-  {id: BOOKMARKS_TREE, x: 1, y: 1, w: 2, h: 3},
-  {id: NOTES, x: 1, y: 1, w: 2, h: 3},
-  {id: NOTES_BUTTON, x: 0, y: 0, w: 1, h: 1},
-  {id: BOOKMARKS_BUTTON, x: 1, y: 0, w: 1, h: 1},
-  {id: LAST_BOOKMARKS_BUTTON, x: 2, y: 0, w: 1, h: 1},
-  {id: WEATHER, x: 0, y: 1, w: 2, h: 2},
+const allWidgets: Layout[] = [
+  {i: CLOCK, w: 4, h: 3, x: 0, y: 0},
+  {i: LAST_BOOKMARKS, w: 2, h: 3, x: 0, y: 0},
+  {i: BOOKMARKS_TREE, w: 2, h: 3, x: 0, y: 0},
+  {i: NOTES, w: 2, h: 3, x: 0, y: 0},
+  {i: NOTES_BUTTON, w: 1, h: 1, x: 0, y: 0},
+  {i: BOOKMARKS_BUTTON, w: 1, h: 1, x: 0, y: 0},
+  {i: LAST_BOOKMARKS_BUTTON, w: 1, h: 1, x: 0, y: 0},
+  {i: WEATHER, w: 2, h: 2, x: 0, y: 0},
+  {i: CALENDAR, w: 2, h: 2, x: 0, y: 0},
 ]
-const defaultWidgets = [allWidgets[0]];
+const defaultWidgets = [allWidgets[0]]
 
-export const widgetsState = atom<GridWidgetType[]>({
+export const widgetsState = atom<Layout[]>({
   key: 'widgetsState',
   default: storageWidgets ? JSON.parse(storageWidgets) : defaultWidgets,
   effects: [
@@ -53,5 +56,10 @@ export const widgetsPanelOpenState = atom({
 
 export const drawerWidgetState = atom<DrawerWidgetState | null>({
   key: 'drawerWidgetState',
+  default: null,
+})
+
+export const draggingWidgetState = atom<Layout | null>({
+  key: 'draggingWidgetState',
   default: null,
 })

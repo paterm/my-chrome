@@ -15,15 +15,8 @@ export class UnsplashService {
    * Запрашивает новое изображение
    */
   public async getImage(): Promise<string | null> {
-    // const result = await this.service.search.getPhotos({
-    //   query: 'wallpaper desktop',
-    //   page: 1,
-    //   perPage: 1,
-    //   color: 'green',
-    //   orientation: 'landscape',
-    // })
     const result = await this.service.photos.getRandom({
-      query: 'wallpaper desktop',
+      query: 'wallpaper desktop nature',
       orientation: 'landscape',
       count: 1,
     })

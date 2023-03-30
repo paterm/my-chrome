@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { GridWidgetType } from '@components/WidgetsGrid/types'
 import { IconButton } from '@mui/material'
 import { GridStackWidget } from 'gridstack/dist/types'
@@ -14,11 +14,13 @@ import NotesButton from '@components/widgets/NotesButton'
 import BookmarksButton from '@components/widgets/BookmarksButton'
 import LastBookmarksButton from '@components/widgets/LastBookmarksButton'
 import Weather from '@components/widgets/Weather'
+import Calendar from '@components/widgets/GoogleCalendar'
 
 interface GridWidgetRendererProps {
   widget: GridWidgetType
   onDelete?: (widget: GridStackWidget) => void
   passXY?: boolean
+  present?: boolean
 }
 
 const {
@@ -30,6 +32,7 @@ const {
   NOTES,
   NOTES_BUTTON,
   WEATHER,
+  CALENDAR,
 } = WIDGET_ID
 
 const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
@@ -37,12 +40,14 @@ const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
      widget,
      passXY = true,
      onDelete,
+     present,
    },
    ref
 ) => {
   let Component = null
+  const widgetId = useMemo(() => (widget.id as string)?.split('__')?.[0], [widget])
 
-  switch (widget.id) {
+  switch (widgetId) {
     case CLOCK:
       Component = ClockWidget
       break
@@ -66,6 +71,9 @@ const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
       break
     case WEATHER:
       Component = Weather
+      break
+    case CALENDAR:
+      Component = Calendar
       break
   }
 

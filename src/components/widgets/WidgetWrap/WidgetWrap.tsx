@@ -17,7 +17,7 @@ const WidgetWrap: React.FC<WidgetWrapProps> = ({
     <Paper
       elevation={24}
       className={s.container}
-      sx={{ borderRadius: '24px' }}
+      sx={{ borderRadius: '8px' }}
     >
       {title && (
         <div className={s.header}>

@@ -1,19 +1,38 @@
 import Dashboard from '@components/Dashboard'
 import WidgetsGrid from '@components/WidgetsGrid'
 import ThemeProvider from '@components/ThemeProvider'
-import { RecoilRoot } from 'recoil'
+import { RecoilRoot, useSetRecoilState } from 'recoil'
 import RecoilNexus from 'recoil-nexus'
+import { useEffect } from 'react'
+import { googleTokenState } from '@state/global.state'
+import 'react-grid-layout/css/styles.css'
+import 'react-resizable/css/styles.css'
 
 function App() {
   return (
     <RecoilRoot>
       <RecoilNexus />
-      <ThemeProvider>
-        <Dashboard>
-          <WidgetsGrid />
-        </Dashboard>
-      </ThemeProvider>
+      <AppWrap />
     </RecoilRoot>
+  )
+}
+
+function AppWrap() {
+  const setToken = useSetRecoilState(googleTokenState)
+
+  // Авторизация в Google сервисах
+  useEffect(() => {
+    // chrome?.identity?.getAccounts?.(console.log)
+    chrome?.identity?.getProfileUserInfo?.(console.log)
+    chrome?.identity?.getAuthToken({ interactive: true }, setToken);
+  }, [])
+
+  return (
+    <ThemeProvider>
+      <Dashboard>
+        <WidgetsGrid />
+      </Dashboard>
+    </ThemeProvider>
   )
 }
 

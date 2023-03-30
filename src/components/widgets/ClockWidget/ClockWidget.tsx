@@ -18,9 +18,10 @@ const ClockWidget: React.FC<ClockWidgetProps> = ({ size = 'l' }) => {
    * Устанавливает новый объект Dayjs в useState раз в секунду
    */
   useEffect(() => {
-    const today = dayjs()
-    setCurrentDate(today)
-    const interval = setInterval(() => setCurrentDate(today), 1000);
+    setCurrentDate(dayjs())
+    const interval = setInterval(() => {
+      setCurrentDate(dayjs())
+    }, 1000);
     return () => clearInterval(interval);
   }, [setCurrentDate]);
 

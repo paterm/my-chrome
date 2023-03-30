@@ -3,12 +3,8 @@
   height: 100%;
   padding: 8px;
   transition: background-color .2s ease;
-  backdrop-filter: blur(2px);
 
   &:hover {
-    background-color: rgba(0,0,0,.2);
-    border-radius: 20px;
-
     .deleteButton {
       opacity: 1;
     }
