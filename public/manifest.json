@@ -11,7 +11,8 @@
     "storage",
     "bookmarks",
     "identity",
-    "identity.email"
+    "identity.email",
+    "history"
   ],
   "oauth2": {
     "client_id": "214941754307-ls4kaqvklfi6m7ul1h9jast1ktl3rgst.apps.googleusercontent.com",

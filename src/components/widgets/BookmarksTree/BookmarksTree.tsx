@@ -9,8 +9,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import FolderIcon from '@mui/icons-material/Folder'
 import { StyledTreeItem } from '@components/widgets/BookmarksTree/styled'
 import WidgetWrap from '@components/widgets/WidgetWrap'
-
-const regex = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)/
+import { getUrlFavicon } from '@utils/getUrlFavicon';
+import { EWidgetID } from '@const/widgetName';
 
 
 const BookmarksTree: React.FC = () => {
@@ -26,26 +26,24 @@ const BookmarksTree: React.FC = () => {
     }
   }, [])
 
-  const renderItem = (bookmark: BookmarkTreeNode) => {
-    const siteUrl = bookmark.url?.match(regex)?.[0]
-    return (
-      <StyledTreeItem
-        key={bookmark.id}
-        nodeId={bookmark.id}
-        labelText={bookmark.title}
-        url={bookmark.url}
-        labelIcon={bookmark.children?.length
-          ? <FolderIcon color="inherit" />
-          : <img className={s.favicon} src={`${siteUrl}/favicon.ico`} alt="" />
-      }
-      >
-        {bookmark.children?.map(renderItem)}
-      </StyledTreeItem>
-    )
-  }
+  const renderItem = (bookmark: BookmarkTreeNode) => (
+    <StyledTreeItem
+      key={bookmark.id}
+      nodeId={bookmark.id}
+      labelText={bookmark.title}
+      url={bookmark.url}
+      labelIcon={bookmark.children?.length
+        ? <FolderIcon color="inherit" />
+        : <img className={s.favicon} src={getUrlFavicon(bookmark.url)} alt="" />
+    }
+    >
+      {bookmark.children?.map(renderItem)}
+    </StyledTreeItem>
+  )
 
   return (
     <WidgetWrap
+      widgetID={EWidgetID.BOOKMARKS_TREE}
       title="Закладки"
       Icon={StarIcon}
     >

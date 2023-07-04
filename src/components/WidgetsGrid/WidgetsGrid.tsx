@@ -1,13 +1,8 @@
 import React from 'react'
 import 'gridstack/dist/gridstack.min.css'
 import { useRecoilState } from 'recoil'
-import { widgetsState } from '@state/widgets.state'
-// import Grid from '@components/WidgetsGrid/Grid'
-// import NewGrid from '@components/WidgetsGrid/NewGrid/NewGrid'
-// import ControlledStack from '@components/WidgetsGrid/ControlledStack'
-// import { GridWidgetType } from '@components/WidgetsGrid/types'
+import { IWidgetLayout, widgetsState } from '@state/widgets.state'
 import GridLayout from '@components/Grid'
-import { Layout } from 'react-grid-layout'
 
 const gridOptions = {
   float: true,
@@ -18,26 +13,26 @@ const gridOptions = {
 const WidgetsGrid: React.FC = () => {
   const [widgets, setWidgets] = useRecoilState(widgetsState)
 
-  const handleAdd = (layout: Layout) => {
-    // console.log('Add widget', widget);
-    // setWidgets((prev) => {
-    //   const newWidgets = [...prev]
-    //   newWidgets.push(widget)
-    //   return newWidgets
-    // })
-  }
-
-  const handleChange = (layout: Layout[]) => {
+  const handleChange = (layout: IWidgetLayout[]) => {
+    console.log('layout', layout);
     console.log('change layout', layout)
-    setWidgets(layout);
+    setWidgets((prevWidgets) => {
+      return layout.map((widget) => {
+        let newWidget = {...widget};
+        const foundWidget = prevWidgets.find(({i}) => i === newWidget.i);
+        if (foundWidget) {
+          newWidget = {...foundWidget, ...newWidget};
+        }
+        return newWidget;
+      })
+    });
   }
 
-  const handleDelete = (layout: Layout) => {
+  const handleDelete = (layout: IWidgetLayout) => {
     const filtered = widgets.filter(({ i }) => i !== layout.i)
     setWidgets(filtered)
   }
 
-  console.log('widgets', widgets);
   return (
     <GridLayout
       items={widgets}

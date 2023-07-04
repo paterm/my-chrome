@@ -1,21 +1,21 @@
 import React, { PureComponent } from 'react'
-import RGL, { Layout, WidthProvider } from 'react-grid-layout'
+import RGL, { WidthProvider } from 'react-grid-layout'
 import Widget from '@components/Grid/Widget'
 import {getRecoil, setRecoil} from 'recoil-nexus'
-import { draggingWidgetState } from '@state/widgets.state'
+import { draggingWidgetState, IWidgetLayout } from '@state/widgets.state'
 
 const ReactGridLayout = WidthProvider(RGL)
 
 interface GridLayoutProps {
   className?: string
-  items: Layout[]
+  items: IWidgetLayout[]
   cols?: number
   rowHeight?: number
-  onLayoutChange?: (layout: Layout[]) => void
+  onLayoutChange?: (layout: IWidgetLayout[]) => void
 }
 
 interface GridLayoutState {
-  layout?: Layout[]
+  layout?: IWidgetLayout[]
 }
 
 
@@ -46,12 +46,12 @@ export default class GridLayout extends PureComponent<GridLayoutProps, GridLayou
     });
   }
 
-  handleLayoutChange(layout: Layout[]) {
+  handleLayoutChange(layout: IWidgetLayout[]) {
     this.props.onLayoutChange?.(layout);
   }
 
-  handleDrop(layout: Layout[], layoutItem: Layout, event: Event) {
-    const droppingLayout = {...getRecoil(draggingWidgetState)} as Layout
+  handleDrop(layout: IWidgetLayout[], layoutItem: IWidgetLayout, event: Event) {
+    const droppingLayout = {...getRecoil(draggingWidgetState)} as IWidgetLayout
     setRecoil(draggingWidgetState, null)
     droppingLayout.x = layoutItem.x;
     droppingLayout.y = layoutItem.y;

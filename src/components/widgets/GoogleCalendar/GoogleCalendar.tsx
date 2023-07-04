@@ -5,10 +5,11 @@ import { googleTokenState } from '@state/global.state'
 import WidgetWrap from '@components/widgets/WidgetWrap'
 import { gCalendarEventsState, gCalendarListState } from './state'
 import dayjs, { Dayjs } from 'dayjs'
-import Calendar, { CalendarTileProperties, ViewCallbackProperties } from 'react-calendar'
+import Calendar, { CalendarTileProperties } from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import s from './Calendar.module.scss'
 import { Schema$Event } from '@components/widgets/GoogleCalendar/types'
+import { EWidgetID } from '@const/widgetName';
 
 const dateFormat = 'YYYY-MM-DD'
 
@@ -88,7 +89,10 @@ const GoogleCalendar: React.FC = () => {
   }, [calendarEvents])
 
   return (
-    <WidgetWrap title="Календарь">
+    <WidgetWrap
+      title="Календарь"
+      widgetID={EWidgetID.CALENDAR}
+    >
       <Calendar
         className={s.calendar}
         value={currentDay?.toDate()}

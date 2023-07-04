@@ -5,6 +5,7 @@ import { RecoilRoot, useSetRecoilState } from 'recoil'
 import RecoilNexus from 'recoil-nexus'
 import { useEffect } from 'react'
 import { googleTokenState } from '@state/global.state'
+import { StyledEngineProvider } from '@mui/material/styles';
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
@@ -28,11 +29,13 @@ function AppWrap() {
   }, [])
 
   return (
-    <ThemeProvider>
-      <Dashboard>
-        <WidgetsGrid />
-      </Dashboard>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider>
+        <Dashboard>
+          <WidgetsGrid />
+        </Dashboard>
+      </ThemeProvider>
+    </StyledEngineProvider>
   )
 }
 

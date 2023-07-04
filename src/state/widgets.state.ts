@@ -1,7 +1,7 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
 import { LOCAL_STORAGE_KEYS } from '@const/localStorageKeys'
 import { GridWidgetType } from '@components/WidgetsGrid/types'
-import { WIDGET_ID } from '@const/widgetName'
+import { EWidgetID } from '@const/widgetName'
 import { DrawerWidgetState } from '@components/DrawerWidget/types'
 import { Layout } from 'react-grid-layout'
 
@@ -16,23 +16,30 @@ const {
   NOTES_BUTTON,
   WEATHER,
   CALENDAR,
-} = WIDGET_ID
+  HISTORY,
+} = EWidgetID
+
+export interface IWidgetLayout extends Layout {
+  title: string;
+  showHeader?: boolean;
+}
 
 const storageWidgets = localStorage.getItem(WidgetsState)
-const allWidgets: Layout[] = [
-  {i: CLOCK, w: 4, h: 3, x: 0, y: 0},
-  {i: LAST_BOOKMARKS, w: 2, h: 3, x: 0, y: 0},
-  {i: BOOKMARKS_TREE, w: 2, h: 3, x: 0, y: 0},
-  {i: NOTES, w: 2, h: 3, x: 0, y: 0},
-  {i: NOTES_BUTTON, w: 1, h: 1, x: 0, y: 0},
-  {i: BOOKMARKS_BUTTON, w: 1, h: 1, x: 0, y: 0},
-  {i: LAST_BOOKMARKS_BUTTON, w: 1, h: 1, x: 0, y: 0},
-  {i: WEATHER, w: 2, h: 2, x: 0, y: 0},
-  {i: CALENDAR, w: 2, h: 2, x: 0, y: 0},
+const allWidgets: IWidgetLayout[] = [
+  {i: CLOCK, w: 4, h: 3, x: 0, y: 0, title: 'Clock'},
+  {i: LAST_BOOKMARKS, w: 2, h: 3, x: 0, y: 0, title: 'Последние закладки'},
+  {i: BOOKMARKS_TREE, w: 2, h: 3, x: 0, y: 0, title: 'Все закладки'},
+  {i: NOTES, w: 2, h: 3, x: 0, y: 0, title: 'Заметки'},
+  {i: NOTES_BUTTON, w: 1, h: 1, x: 0, y: 0, title: 'Заметки'},
+  {i: BOOKMARKS_BUTTON, w: 1, h: 1, x: 0, y: 0, title: 'Закладки'},
+  {i: LAST_BOOKMARKS_BUTTON, w: 1, h: 1, x: 0, y: 0, title: 'Последние закладки'},
+  {i: WEATHER, w: 2, h: 2, x: 0, y: 0, title: 'Погода'},
+  {i: CALENDAR, w: 2, h: 2, x: 0, y: 0, title: 'Календарь'},
+  {i: HISTORY, w: 2, h: 2, x: 0, y: 0, title: 'История'},
 ]
 const defaultWidgets = [allWidgets[0]]
 
-export const widgetsState = atom<Layout[]>({
+export const widgetsState = atom<IWidgetLayout[]>({
   key: 'widgetsState',
   default: storageWidgets ? JSON.parse(storageWidgets) : defaultWidgets,
   effects: [

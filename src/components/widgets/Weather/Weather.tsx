@@ -3,6 +3,7 @@ import LocationService from '@services/location.service'
 import WidgetWrap from '@components/widgets/WidgetWrap'
 import WeatherService, { OpenWeatherMapResponse } from '@services/weather.service'
 import { Avatar, Stack, Typography } from '@mui/material'
+import { EWidgetID } from '@const/widgetName';
 
 
 const Weather: React.FC = () => {
@@ -34,6 +35,7 @@ const Weather: React.FC = () => {
     const weatherService = new WeatherService(coords.latitude, coords.longitude)
     const weatherResponse = await weatherService.getOpenWeatherMap()
     if (weatherResponse) {
+      console.log('weatherResponse', weatherResponse);
       const { weather } = weatherResponse
       const [currentWeather] = weather
       setWeatherData(weatherResponse)
@@ -49,8 +51,8 @@ const Weather: React.FC = () => {
   const currentWeather = weather[0]
 
   return (
-    <WidgetWrap title="Погода">
-      <Stack spacing={1} textAlign="center">
+    <WidgetWrap widgetID={EWidgetID.WEATHER}>
+      <Stack spacing={.4} textAlign="center" pt={2}>
         <Typography variant="subtitle1">{name}</Typography>
 
         <Stack

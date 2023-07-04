@@ -8,6 +8,7 @@ import NoteEditor from '@components/widgets/Notes/NoteEditor'
 import { Note } from '@components/widgets/Notes/types'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { EWidgetID } from '@const/widgetName';
 
 
 const Notes: React.FC = () => {
@@ -43,6 +44,7 @@ const Notes: React.FC = () => {
     <WidgetWrap
       title="Заметки"
       Icon={EventNoteIcon}
+      widgetID={EWidgetID.NOTES}
     >
       {!notes.length && (
         <Alert security="info">

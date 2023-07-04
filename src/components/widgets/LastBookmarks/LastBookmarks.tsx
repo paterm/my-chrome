@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 import s from './LastBookmarks.module.scss'
 import mockup from './mockup.json'
 import WidgetWrap from '@components/widgets/WidgetWrap'
+import { EWidgetID } from '@const/widgetName';
+import BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
 const regex = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)/
 
@@ -31,6 +32,7 @@ const LastBookmarks: React.FC = () => {
     <WidgetWrap
       title="Последние добавленные"
       Icon={StarIcon}
+      widgetID={EWidgetID.LAST_BOOKMARKS}
     >
       <List
         className={s.container}

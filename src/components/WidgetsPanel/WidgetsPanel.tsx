@@ -2,10 +2,10 @@ import React  from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { allWidgetsState, draggingWidgetState, widgetsPanelOpenState } from '@state/widgets.state'
 import { Card, Divider, Drawer, IconButton, List, ListItem, Typography, useTheme } from '@mui/material'
-import GridWidgetRenderer from '@components/WidgetsGrid/GridWidgetRenderer'
+// import GridWidgetRenderer from '@components/WidgetsGrid/GridWidgetRenderer'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './WidgetPanel.module.scss'
-import ControlledStack from '@components/WidgetsGrid/ControlledStack'
+// import ControlledStack from '@components/WidgetsGrid/ControlledStack'
 import Widget from '@components/Grid/Widget'
 
 const gridOptions = {

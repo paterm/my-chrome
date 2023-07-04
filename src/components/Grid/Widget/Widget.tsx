@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useMemo, useState } from 'react'
-import { WIDGET_ID } from '@const/widgetName'
+import { EWidgetID } from '@const/widgetName'
 import ClockWidget from '@components/widgets/ClockWidget/ClockWidget'
 import LastBookmarks from '@components/widgets/LastBookmarks'
 import LastBookmarksButton from '@components/widgets/LastBookmarksButton'
@@ -11,6 +11,7 @@ import Weather from '@components/widgets/Weather'
 import Calendar from '@components/widgets/GoogleCalendar'
 import { Layout } from 'react-grid-layout'
 import dayjs, { Dayjs } from 'dayjs'
+import { LastHistory } from '@components/widgets/LastHistory';
 
 interface GridWidgetRendererProps {
   widget: Layout
@@ -26,7 +27,8 @@ const {
   NOTES_BUTTON,
   WEATHER,
   CALENDAR,
-} = WIDGET_ID
+  HISTORY,
+} = EWidgetID
 
 const Widget = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
   ({ widget }, ref
@@ -61,6 +63,9 @@ const Widget = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
       break
     case CALENDAR:
       Component = Calendar
+      break
+    case HISTORY:
+      Component = LastHistory;
       break
   }
 

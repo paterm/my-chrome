@@ -3,6 +3,7 @@ import GoogleKeepService from '@services/google-keep.service'
 import WidgetWrap from '@components/widgets/WidgetWrap'
 import { useRecoilValue } from 'recoil'
 import { googleTokenState } from '@state/global.state'
+import { EWidgetID } from '@const/widgetName';
 
 
 const GoogleKeep: React.FC = () => {
@@ -19,7 +20,10 @@ const GoogleKeep: React.FC = () => {
   }, [googleToken])
 
   return (
-    <WidgetWrap title="Google Keep">
+    <WidgetWrap
+      title="Google Keep"
+      widgetID={EWidgetID.GOOGLE_KEEP}
+    >
       <div>GoogleKeep</div>
     </WidgetWrap>
   )

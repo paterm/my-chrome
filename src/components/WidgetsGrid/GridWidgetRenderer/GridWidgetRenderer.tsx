@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo } from 'react'
 import { GridWidgetType } from '@components/WidgetsGrid/types'
 import { IconButton } from '@mui/material'
 import { GridStackWidget } from 'gridstack/dist/types'
-import { WIDGET_ID } from '@const/widgetName'
+import { EWidgetID } from '@const/widgetName'
 import { isFunction } from 'lodash'
 import s from './GridWidgetRenderer.module.scss'
 import ClockWidget from '@components/widgets/ClockWidget/ClockWidget'
@@ -15,6 +15,7 @@ import BookmarksButton from '@components/widgets/BookmarksButton'
 import LastBookmarksButton from '@components/widgets/LastBookmarksButton'
 import Weather from '@components/widgets/Weather'
 import Calendar from '@components/widgets/GoogleCalendar'
+import { LastHistory } from '@components/widgets/LastHistory';
 
 interface GridWidgetRendererProps {
   widget: GridWidgetType
@@ -33,7 +34,8 @@ const {
   NOTES_BUTTON,
   WEATHER,
   CALENDAR,
-} = WIDGET_ID
+  HISTORY,
+} = EWidgetID
 
 const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
   ({
@@ -75,6 +77,9 @@ const GridWidgetRenderer = forwardRef<HTMLDivElement, GridWidgetRendererProps>(
     case CALENDAR:
       Component = Calendar
       break
+    case HISTORY:
+      Component = LastHistory;
+      break;
   }
 
   if (!Component) {
